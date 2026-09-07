@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>let's dive into your feelings.</title>
+<meta name="description" content="Bande-son du mémoire de Paul-Hugo Guilloton. 53 minutes.">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500&display=swap" rel="stylesheet">
+
+<style>
+@font-face{font-family:'BBB Poppins TN Display';src:url('fonts/BBBPoppinsTN-DisplayRegular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'BBB Poppins TN Display';src:url('fonts/BBBPoppinsTN-DisplaySemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+
+:root{
+  --bleu:#006C7A;
+  --bleu-fonce:#00505A;
+  --sable:#F8FEFF;
+  --orange:#FF6219;
+  --vert:#C6F135;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+
+body{
+  background:var(--bleu-fonce);
+  color:var(--sable);
+  font-family:'Switzer',-apple-system,BlinkMacSystemFont,sans-serif;
+  line-height:1.6;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+/* ── Fond : halos très diffus, dérive lente ── */
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:var(--bleu-fonce)}
+.bg::before,.bg::after{content:'';position:absolute;border-radius:50%;filter:blur(130px);will-change:transform}
+.bg::before{
+  width:85vmax;height:85vmax;top:-30vmax;left:-24vmax;
+  background:radial-gradient(circle,rgba(0,140,155,.8),transparent 70%);
+  animation:drift1 48s var(--ease) infinite alternate;
+}
+.bg::after{
+  width:70vmax;height:70vmax;bottom:-26vmax;right:-20vmax;
+  background:radial-gradient(circle,rgba(198,241,53,.14),transparent 68%);
+  animation:drift2 62s var(--ease) infinite alternate;
+}
+@keyframes drift1{to{transform:translate3d(16vmax,12vmax,0) scale(1.18)}}
+@keyframes drift2{to{transform:translate3d(-14vmax,-11vmax,0) scale(1.24)}}
+
+section{
+  min-height:100svh;position:relative;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:64px 24px;
+}
+
+/* ── Hero ── */
+.hero-inner{
+  opacity:0;filter:blur(26px);transform:translateY(28px);
+  animation:reveal 2.2s .3s var(--ease) forwards;
+}
+@keyframes reveal{to{opacity:1;filter:blur(0);transform:translateY(0)}}
+
+h1{
+  font-family:'BBB Poppins TN Display',sans-serif;
+  font-weight:600;
+  font-size:clamp(2.4rem,9vw,5.6rem);
+  line-height:1.12;              /* laisse respirer les jambages */
+  padding-bottom:.14em;          /* le « g » n'est plus rogné */
+  letter-spacing:-.035em;
+  max-width:14ch;
+  background:linear-gradient(105deg,var(--sable) 18%,var(--vert) 96%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+h1 .dot{-webkit-text-fill-color:var(--orange);color:var(--orange)}
+
+.sub{
+  margin-top:26px;
+  font-size:.9375rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:rgba(248,254,255,.6);
+}
+
+/* ── Indicateur de scroll, en glow diffus ── */
+.scroll{
+  position:absolute;bottom:48px;left:50%;transform:translateX(-50%);
+  font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(248,254,255,.5);
+  opacity:0;
+  animation:scrollIn 2s 2.1s ease forwards, glow 3.6s 4s ease-in-out infinite;
+  transition:opacity .9s ease;
+}
+.scroll::after{
+  content:'';display:block;width:1px;height:30px;margin:14px auto 0;
+  background:linear-gradient(rgba(248,254,255,.4),transparent);
+}
+@keyframes scrollIn{to{opacity:1}}
+@keyframes glow{
+  0%,100%{opacity:1;text-shadow:0 0 0 rgba(198,241,53,0)}
+  50%    {opacity:.62;text-shadow:0 0 22px rgba(198,241,53,.55)}
+}
+.scroll.hidden{opacity:0;animation-play-state:paused}
+
+/* ── Les deux choix ── */
+.choices{width:100%;max-width:440px}
+
+a.choice{
+  display:block;padding:30px 12px;
+  text-decoration:none;color:var(--sable);
+  border-top:1px solid rgba(248,254,255,.16);
+  opacity:0;transform:translateY(20px);
+  transition:opacity .8s var(--ease),transform .8s var(--ease);
+}
+a.choice:last-child{border-bottom:1px solid rgba(248,254,255,.16)}
+.revealed a.choice{opacity:1;transform:translateY(0)}
+.revealed a.choice:nth-child(2){transition-delay:.18s}
+
+a.choice .label{
+  font-family:'BBB Poppins TN Display',sans-serif;
+  font-weight:600;font-size:1.375rem;letter-spacing:-.015em;
+  display:inline-block;transition:color .3s var(--ease);
+}
+a.choice .note{
+  display:block;margin-top:8px;
+  font-size:.875rem;color:rgba(248,254,255,.55);
+  transition:color .3s var(--ease);
+}
+a.choice:focus-visible{outline:2px solid var(--vert);outline-offset:6px}
+
+/* YouTube : sobre, inchangé */
+a.choice.simple:hover .label,
+a.choice.simple:focus-visible .label{color:var(--vert)}
+
+/* Qobuz : un bouton arrondi se déplie au survol */
+a.choice.primary .label::after{content:'.';color:var(--orange)}
+.cta{
+  display:block;overflow:hidden;
+  max-height:0;opacity:0;
+  transition:max-height .5s var(--ease),opacity .4s var(--ease),margin-top .5s var(--ease);
+}
+.cta span{
+  display:inline-block;
+  padding:11px 26px;border-radius:12px;
+  background:var(--vert);color:#013840;
+  font-family:'BBB Poppins TN Display',sans-serif;
+  font-weight:600;font-size:.875rem;letter-spacing:.01em;
+  transform:translateY(8px);
+  transition:transform .5s var(--ease);
+}
+a.choice.primary:hover .cta,
+a.choice.primary:focus-visible .cta{max-height:80px;opacity:1;margin-top:18px}
+a.choice.primary:hover .cta span,
+a.choice.primary:focus-visible .cta span{transform:translateY(0)}
+a.choice.primary:hover .label,
+a.choice.primary:focus-visible .label{color:var(--vert)}
+
+footer{
+  margin-top:60px;
+  font-size:.75rem;line-height:1.8;
+  color:rgba(248,254,255,.4);
+  max-width:36ch;
+}
+footer a{color:rgba(248,254,255,.66);text-decoration:none;border-bottom:1px solid rgba(248,254,255,.28);transition:color .25s ease,border-color .25s ease}
+footer a:hover{color:var(--vert);border-color:var(--vert)}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+  .hero-inner,.scroll{opacity:1;filter:none;transform:none}
+  .scroll{transform:translateX(-50%)}
+  a.choice{opacity:1;transform:none}
+  .cta{max-height:80px;opacity:1;margin-top:18px}
+  .cta span{transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true"></div>
+
+<section>
+  <div class="hero-inner">
+    <h1>let's dive into your feelings<span class="dot">.</span></h1>
+    <p class="sub">Bande-son du mémoire · 53 minutes</p>
+  </div>
+  <div class="scroll" id="scroll" aria-hidden="true">Écouter</div>
+</section>
+
+<section id="ecouter">
+  <div class="choices" id="choices">
+
+    <a class="choice primary" href="https://open.qobuz.com/playlist/69594774" target="_blank" rel="noopener">
+      <span class="label">Écouter sur Qobuz</span>
+      <span class="note">En soutenant pleinement les artistes</span>
+      <span class="cta"><span>Ouvrir la playlist</span></span>
+    </a>
+
+    <a class="choice simple" href="https://www.youtube.com/playlist?list=PLfsqRwiU2IRE" target="_blank" rel="noopener">
+      <span class="label">Écouter sur YouTube</span>
+      <span class="note">Sans abonnement, avec quelques publicités</span>
+    </a>
+
+  </div>
+
+  <footer>
+    Mémoire de <a href="https://bio.paul-hugo-guilloton.fr" target="_blank" rel="noopener">Paul-Hugo Guilloton</a><br>
+    EFAP · MBA Création et Stratégies Publicitaires · 2026
+  </footer>
+</section>
+
+<script>
+const scroll = document.getElementById('scroll');
+addEventListener('scroll', () => {
+  scroll.classList.toggle('hidden', scrollY > 40);
+}, {passive:true});
+
+new IntersectionObserver((entries, obs) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); }
+  });
+}, {threshold:.3}).observe(document.getElementById('choices'));
+</script>
+
+</body>
+</html>

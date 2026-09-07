@@ -1,0 +1,8 @@
+# Aperçus de rendu, pas du contenu de site
+apercu-*.png
+
+# Le générateur du PDF du mémoire vit ici par commodité,
+# il n'a rien à faire dans l'image nginx (voir Dockerfile)
+build_memoire.py
+__pycache__/
+.DS_Store
