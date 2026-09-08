@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'PH';src:url('fonts/BBBPoppinsTN-DisplayRegular.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'PH';src:url('fonts/BBBPoppinsTN-DisplaySemiBold.woff2') format('woff2');font-weight:600}
+:root{--bleu:#006C7A;--sable:#F8FEFF;--orange:#FF6219;--vert:#C6F135;--gris:#7f9599}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--sable);font-family:'Switzer',sans-serif}
+.board{width:1240px;padding:56px 40px 44px;text-align:center}
+h1{font-family:'PH',sans-serif;font-weight:600;font-size:27px;color:var(--bleu);
+   letter-spacing:-.02em;margin-bottom:26px}
+svg{display:block;margin:0 auto}
+.nom{font-family:'PH',sans-serif;font-weight:600;font-size:21px;fill:var(--bleu)}
+.nom-art{fill:#5b8992}
+.role{font-family:'Switzer',sans-serif;font-size:15px;fill:var(--gris)}
+.dpb{font-family:'PH',sans-serif;font-weight:600;font-size:27px;fill:var(--orange)}
+.vision{font-family:'PH',sans-serif;font-size:14px;fill:var(--bleu);letter-spacing:.09em}
+</style></head>
+<body>
+<div class="board">
+  <h1>Le Deep Personal Brand Ecosystem</h1>
+
+  <svg width="1120" height="880" viewBox="0 0 1120 880">
+
+    <!-- Vision commune, en chapeau -->
+    <text class="vision" x="560" y="34" text-anchor="middle">UNE VISION COMMUNE</text>
+    <line x1="560" y1="50" x2="560" y2="86" stroke="#C6F135" stroke-width="3"/>
+
+    <!-- Marque artistique : trait plus clair, elle ne convertit pas -->
+    <circle cx="560" cy="560" r="252" fill="#006C7A" fill-opacity=".03"
+            stroke="#006C7A" stroke-opacity=".3" stroke-width="2.5"/>
+    <!-- Marque rémunératrice -->
+    <circle cx="410" cy="370" r="252" fill="#006C7A" fill-opacity=".05"
+            stroke="#006C7A" stroke-opacity=".85" stroke-width="2.5"/>
+    <!-- Marque communicative -->
+    <circle cx="710" cy="370" r="252" fill="#006C7A" fill-opacity=".05"
+            stroke="#006C7A" stroke-opacity=".85" stroke-width="2.5"/>
+
+    <!-- Libellés, dans le lobe propre de chaque cercle -->
+    <text class="nom"  x="288" y="298" text-anchor="middle">Rémunératrice</text>
+    <text class="role" x="288" y="326" text-anchor="middle">L'offre et la preuve</text>
+
+    <text class="nom"  x="832" y="298" text-anchor="middle">Communicative</text>
+    <text class="role" x="832" y="326" text-anchor="middle">Le point de vue</text>
+
+    <text class="nom nom-art" x="560" y="716" text-anchor="middle">Artistique</text>
+    <text class="role"        x="560" y="744" text-anchor="middle">L'univers, pour lui-même</text>
+
+    <!-- Intersection des trois -->
+    <text class="dpb"  x="560" y="440" text-anchor="middle">DPB</text>
+    <text class="role" x="560" y="466" text-anchor="middle">Deep Personal Branding</text>
+
+  </svg>
+</div>
+</body></html>

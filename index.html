@@ -106,58 +106,60 @@ h1 .dot{-webkit-text-fill-color:var(--orange);color:var(--orange)}
 }
 .scroll.hidden{opacity:0;animation-play-state:paused}
 
-/* ── Les deux choix ── */
-.choices{width:100%;max-width:440px}
+/* ── Trois niveaux d'invitation ── */
+.choices{width:100%;max-width:420px}
 
-a.choice{
-  display:block;padding:30px 12px;
-  text-decoration:none;color:var(--sable);
-  border-top:1px solid rgba(248,254,255,.16);
-  opacity:0;transform:translateY(20px);
+.choice{
+  display:block;text-decoration:none;
+  opacity:0;transform:translateY(18px);
   transition:opacity .8s var(--ease),transform .8s var(--ease);
 }
-a.choice:last-child{border-bottom:1px solid rgba(248,254,255,.16)}
-.revealed a.choice{opacity:1;transform:translateY(0)}
-.revealed a.choice:nth-child(2){transition-delay:.18s}
+.revealed .choice{opacity:1;transform:translateY(0)}
+.revealed .choice.deux{transition-delay:.14s}
+.revealed .choice.trois{transition-delay:.26s}
 
-a.choice .label{
-  font-family:'BBB Poppins TN Display',sans-serif;
-  font-weight:600;font-size:1.375rem;letter-spacing:-.015em;
-  display:inline-block;transition:color .3s var(--ease);
+/* 1 · Qobuz : le geste par défaut */
+.choice.un{
+  background:var(--vert);border-radius:16px;
+  padding:26px 24px;color:#013840;
+  box-shadow:0 10px 30px rgba(198,241,53,.18);
 }
-a.choice .note{
-  display:block;margin-top:8px;
-  font-size:.875rem;color:rgba(248,254,255,.55);
-  transition:color .3s var(--ease);
+.choice.un .label{
+  font-family:'BBB Poppins TN Display',sans-serif;font-weight:600;
+  font-size:1.375rem;letter-spacing:-.015em;display:block;
 }
-a.choice:focus-visible{outline:2px solid var(--vert);outline-offset:6px}
+.choice.un .note{
+  display:block;margin-top:6px;font-size:.875rem;color:rgba(1,56,64,.72);
+}
+.choice.un{transition:opacity .8s var(--ease),transform .8s var(--ease),box-shadow .3s ease}
+.choice.un:hover,.choice.un:focus-visible{box-shadow:0 14px 40px rgba(198,241,53,.3)}
 
-/* YouTube : sobre, inchangé */
-a.choice.simple:hover .label,
-a.choice.simple:focus-visible .label{color:var(--vert)}
+/* 2 · YouTube : le repli */
+.choice.deux{
+  margin-top:20px;padding:20px 24px;
+  border:1px solid rgba(248,254,255,.24);border-radius:14px;
+  color:var(--sable);
+}
+.choice.deux .label{
+  font-family:'BBB Poppins TN Display',sans-serif;font-weight:600;
+  font-size:1.0625rem;display:block;transition:color .25s ease;
+}
+.choice.deux .note{display:block;margin-top:5px;font-size:.8125rem;color:rgba(248,254,255,.5)}
+.choice.deux:hover .label,.choice.deux:focus-visible .label{color:var(--vert)}
 
-/* Qobuz : un bouton arrondi se déplie au survol */
-a.choice.primary .label::after{content:'.';color:var(--orange)}
-.cta{
-  display:block;overflow:hidden;
-  max-height:0;opacity:0;
-  transition:max-height .5s var(--ease),opacity .4s var(--ease),margin-top .5s var(--ease);
+/* 3 · Spotify : présent, pas invitant */
+.choice.trois{
+  margin-top:26px;font-size:.75rem;letter-spacing:.04em;
+  color:rgba(248,254,255,.3);
+  border-bottom:1px solid rgba(248,254,255,.14);
+  display:inline-block;padding-bottom:2px;
+  transition:color .25s ease,border-color .25s ease;
 }
-.cta span{
-  display:inline-block;
-  padding:11px 26px;border-radius:12px;
-  background:var(--vert);color:#013840;
-  font-family:'BBB Poppins TN Display',sans-serif;
-  font-weight:600;font-size:.875rem;letter-spacing:.01em;
-  transform:translateY(8px);
-  transition:transform .5s var(--ease);
+.choice.trois:hover,.choice.trois:focus-visible{
+  color:rgba(248,254,255,.55);border-color:rgba(248,254,255,.3);
 }
-a.choice.primary:hover .cta,
-a.choice.primary:focus-visible .cta{max-height:80px;opacity:1;margin-top:18px}
-a.choice.primary:hover .cta span,
-a.choice.primary:focus-visible .cta span{transform:translateY(0)}
-a.choice.primary:hover .label,
-a.choice.primary:focus-visible .label{color:var(--vert)}
+
+.choice:focus-visible{outline:2px solid var(--vert);outline-offset:5px}
 
 footer{
   margin-top:60px;
@@ -193,16 +195,21 @@ footer a:hover{color:var(--vert);border-color:var(--vert)}
 <section id="ecouter">
   <div class="choices" id="choices">
 
-    <a class="choice primary" href="https://open.qobuz.com/playlist/69594774" target="_blank" rel="noopener">
+    <a class="choice un" href="https://open.qobuz.com/playlist/69594774" target="_blank" rel="noopener">
       <span class="label">Écouter sur Qobuz</span>
-      <span class="note">En soutenant pleinement les artistes</span>
-      <span class="cta"><span>Ouvrir la playlist</span></span>
+      <span class="note">Qualité lossless, et la rémunération la plus juste pour les artistes</span>
     </a>
 
-    <a class="choice simple" href="https://www.youtube.com/playlist?list=PLfsqRwiU2IRE" target="_blank" rel="noopener">
+    <a class="choice deux" href="https://www.youtube.com/playlist?list=PLfsqRwiU2IRE" target="_blank" rel="noopener">
       <span class="label">Écouter sur YouTube</span>
-      <span class="note">Sans abonnement, avec quelques publicités</span>
+      <span class="note">Sans abonnement, avec quelques publicités si vous n'avez pas Premium</span>
     </a>
+
+    <!-- Troisième niveau, volontairement discret. À décommenter dès que la
+         playlist Spotify existe : remplacer SPOTIFY_URL par son lien.
+    <br>
+    <a class="choice trois" href="SPOTIFY_URL" target="_blank" rel="noopener">ou sur une autre plateforme</a>
+    -->
 
   </div>
 
