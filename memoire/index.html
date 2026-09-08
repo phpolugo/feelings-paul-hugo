@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mémoire de fin d'études · Paul-Hugo Guilloton</title>
+<meta name="description" content="À l'ère de l'intelligence artificielle, en quoi l'intelligence émotionnelle devient-elle le véritable moteur de la valeur créative humaine ?">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#00505A">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500&display=swap" rel="stylesheet">
+
+<style>
+@font-face{font-family:'BBB Poppins TN Display';src:url('/fonts/BBBPoppinsTN-DisplayRegular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'BBB Poppins TN Display';src:url('/fonts/BBBPoppinsTN-DisplaySemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+
+:root{
+  --bleu:#006C7A;
+  --bleu-fonce:#00505A;
+  --sable:#F8FEFF;
+  --orange:#FF6219;
+  --vert:#C6F135;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+
+body{
+  background:var(--bleu-fonce);
+  color:var(--sable);
+  font-family:'Switzer',-apple-system,BlinkMacSystemFont,sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* Même fond que la page bande-son : les deux pages se reconnaissent */
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:var(--bleu-fonce)}
+.bg::before,.bg::after{content:'';position:absolute;border-radius:50%;filter:blur(130px);will-change:transform}
+.bg::before{
+  width:85vmax;height:85vmax;top:-30vmax;left:-24vmax;
+  background:radial-gradient(circle,rgba(0,140,155,.8),transparent 70%);
+  animation:drift1 48s var(--ease) infinite alternate;
+}
+.bg::after{
+  width:70vmax;height:70vmax;bottom:-26vmax;right:-20vmax;
+  background:radial-gradient(circle,rgba(198,241,53,.14),transparent 68%);
+  animation:drift2 62s var(--ease) infinite alternate;
+}
+@keyframes drift1{to{transform:translate3d(16vmax,12vmax,0) scale(1.18)}}
+@keyframes drift2{to{transform:translate3d(-14vmax,-11vmax,0) scale(1.24)}}
+@media (prefers-reduced-motion:reduce){
+  .bg::before,.bg::after{animation:none}
+  .wrap{animation:none;opacity:1;filter:none;transform:none}
+}
+
+/* Une seule colonne, tout tient sans scroll obligatoire */
+main{
+  min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:56px 24px;
+  max-width:660px;margin:0 auto;
+}
+
+.wrap{
+  opacity:0;filter:blur(22px);transform:translateY(24px);
+  animation:reveal 1.9s .25s var(--ease) forwards;
+}
+@keyframes reveal{to{opacity:1;filter:blur(0);transform:translateY(0)}}
+
+.kicker{
+  font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(248,254,255,.5);margin-bottom:22px;
+}
+
+h1{
+  font-family:'BBB Poppins TN Display',sans-serif;font-weight:600;
+  font-size:clamp(1.6rem,4.6vw,2.5rem);
+  line-height:1.2;letter-spacing:-.025em;
+  padding-bottom:.1em;
+  background:linear-gradient(105deg,var(--sable) 22%,var(--vert) 98%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+h1 .dot{-webkit-text-fill-color:var(--orange);color:var(--orange)}
+
+.auteur{
+  margin-top:24px;font-size:.9375rem;
+  color:rgba(248,254,255,.62);
+}
+.auteur strong{font-weight:500;color:var(--sable)}
+
+/* Le geste principal : lire */
+.lire{
+  display:block;text-decoration:none;
+  margin-top:38px;
+  background:var(--vert);border-radius:16px;
+  padding:24px 26px;color:#013840;
+  box-shadow:0 10px 30px rgba(198,241,53,.18);
+  transition:box-shadow .3s ease,transform .3s var(--ease);
+}
+.lire:hover,.lire:focus-visible{
+  box-shadow:0 14px 40px rgba(198,241,53,.32);
+  transform:translateY(-2px);
+}
+.lire .label{
+  font-family:'BBB Poppins TN Display',sans-serif;font-weight:600;
+  font-size:1.375rem;letter-spacing:-.015em;display:block;
+}
+.lire .note{display:block;margin-top:6px;font-size:.875rem;color:rgba(1,56,64,.72)}
+
+/* La musique : l'accompagnement, pas l'objet */
+.musique{
+  margin-top:34px;padding-top:26px;
+  border-top:1px solid rgba(248,254,255,.14);
+}
+.musique p{font-size:.9375rem;color:rgba(248,254,255,.6);margin-bottom:14px}
+.musique a{
+  display:inline-flex;align-items:center;gap:9px;
+  text-decoration:none;color:var(--sable);
+  font-family:'BBB Poppins TN Display',sans-serif;font-weight:600;
+  font-size:1.0625rem;
+  border-bottom:1px solid rgba(248,254,255,.28);
+  padding-bottom:3px;
+  transition:color .25s ease,border-color .25s ease;
+}
+.musique a:hover,.musique a:focus-visible{color:var(--vert);border-color:var(--vert)}
+.musique .duree{font-family:'Switzer',sans-serif;font-weight:400;font-size:.8125rem;color:rgba(248,254,255,.42);border:0}
+
+footer{
+  margin-top:46px;
+  font-size:.8125rem;line-height:1.8;
+  color:rgba(248,254,255,.42);
+}
+footer a{color:rgba(248,254,255,.6);text-decoration:none;border-bottom:1px solid rgba(248,254,255,.24)}
+footer a:hover{color:var(--vert);border-color:var(--vert)}
+
+a:focus-visible{outline:2px solid var(--vert);outline-offset:5px}
+</style>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true"></div>
+
+<main>
+  <div class="wrap">
+    <div class="kicker">Mémoire de fin d'études · Septembre 2026</div>
+
+    <h1>À l'ère de l'intelligence artificielle, en quoi l'intelligence émotionnelle devient-elle le véritable moteur de la valeur créative humaine&nbsp;<span class="dot">?</span></h1>
+
+    <p class="auteur"><strong>Paul-Hugo Guilloton</strong><br>
+    EFAP Bordeaux · MBA Création et Stratégies Publicitaires</p>
+
+    <a class="lire" href="/memoire.pdf" target="_blank" rel="noopener">
+      <span class="label">Lire le mémoire</span>
+      <span class="note">48 pages · PDF · à ouvrir sur téléphone ou ordinateur</span>
+    </a>
+
+    <div class="musique">
+      <p>Il a été écrit pour se lire en musique. Une bande-son l'accompagne, et chaque partie s'ouvre sur ses morceaux.</p>
+      <a href="/">Écouter la bande-son <span class="duree">53 min</span></a>
+    </div>
+
+    <footer>
+      Mémoire de fin d'études, soutenu en septembre 2026.<br>
+      <a href="https://bio.paul-hugo-guilloton.fr" target="_blank" rel="noopener">paul-hugo-guilloton.fr</a>
+    </footer>
+  </div>
+</main>
+
+</body>
+</html>

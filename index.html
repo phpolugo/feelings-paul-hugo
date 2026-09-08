@@ -167,27 +167,6 @@ h1 .dot{-webkit-text-fill-color:var(--orange);color:var(--orange)}
 
 .choice:focus-visible{outline:2px solid var(--vert);outline-offset:5px}
 
-/* Lire le mémoire : un autre geste que l'écoute, donc séparé par un filet
-   plutôt que présenté comme une quatrième plateforme */
-.lire{
-  margin-top:42px;padding-top:30px;
-  border-top:1px solid rgba(248,254,255,.14);
-  opacity:0;transform:translateY(18px);
-  transition:opacity .8s var(--ease) .38s,transform .8s var(--ease) .38s;
-}
-.revealed .lire{opacity:1;transform:translateY(0)}
-.lire a{
-  display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
-  text-decoration:none;color:var(--sable);
-}
-.lire .label{
-  font-family:'BBB Poppins TN Display',sans-serif;font-weight:600;
-  font-size:1.0625rem;transition:color .25s ease;
-}
-.lire .meta{font-size:.8125rem;color:rgba(248,254,255,.42)}
-.lire a:hover .label,.lire a:focus-visible .label{color:var(--vert)}
-.lire a:focus-visible{outline:2px solid var(--vert);outline-offset:5px}
-
 footer{
   margin-top:60px;
   font-size:.75rem;line-height:1.8;
@@ -234,13 +213,6 @@ footer a:hover{color:var(--vert);border-color:var(--vert)}
 
     <br>
     <a class="choice trois" href="https://open.spotify.com/playlist/4LB7GM3JMeJvsdqmkPnJXS" target="_blank" rel="noopener">ou sur Spotify</a>
-
-    <div class="lire">
-      <a href="memoire.pdf" target="_blank" rel="noopener">
-        <span class="label">Lire le mémoire</span>
-        <span class="meta">48 pages · PDF</span>
-      </a>
-    </div>
 
   </div>
 
