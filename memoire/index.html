@@ -90,11 +90,15 @@ h1 .dot{-webkit-text-fill-color:var(--orange);color:var(--orange)}
   color:rgba(248,254,255,.55);
 }
 
-.auteur{
-  margin-top:14px;
-  font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;
+/* Même pied de page que la page bande-son */
+footer{
+  margin-top:60px;
+  font-size:.75rem;line-height:1.8;
   color:rgba(248,254,255,.4);
+  max-width:36ch;
 }
+footer a{color:rgba(248,254,255,.66);text-decoration:none;border-bottom:1px solid rgba(248,254,255,.28);transition:color .25s ease,border-color .25s ease}
+footer a:hover{color:var(--vert);border-color:var(--vert)}
 
 .lire{
   display:block;text-decoration:none;
@@ -138,14 +142,17 @@ a:focus-visible{outline:2px solid var(--vert);outline-offset:5px}
 
     <p class="sujet">À l'ère de l'intelligence artificielle, en quoi l'intelligence émotionnelle devient-elle le véritable moteur de la valeur créative humaine&nbsp;?</p>
 
-    <p class="auteur">Paul-Hugo Guilloton · EFAP Bordeaux</p>
-
     <a class="lire" href="/memoire.pdf" target="_blank" rel="noopener">
       <span class="label">Lire le mémoire</span>
       <span class="note">48 pages · PDF</span>
     </a>
 
     <a class="ecouter" href="/">Il se lit en musique · 53 min</a>
+
+    <footer>
+      Mémoire de <a href="https://bio.paul-hugo-guilloton.fr" target="_blank" rel="noopener">Paul-Hugo Guilloton</a><br>
+      EFAP · MBA Création et Stratégies Publicitaires · 2026
+    </footer>
   </div>
 </main>
 
