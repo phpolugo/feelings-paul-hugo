@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'PH';src:url('fonts/BBBPoppinsTN-DisplaySemiBold.woff2') format('woff2');font-weight:600}
+:root{--bleu:#006C7A;--fonce:#00343C;--sable:#F8FEFF;--orange:#FF6219;--vert:#C6F135}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#111;display:flex;gap:40px;padding:40px;font-family:'Switzer',sans-serif}
+
+.cover{
+  width:1400px;height:1400px;position:relative;overflow:hidden;
+  background:var(--fonce);flex:none;
+}
+
+/* Halos superposés, le dégradé */
+.cover::before{
+  content:'';position:absolute;inset:-20%;
+  background:
+    radial-gradient(48% 42% at 26% 24%, rgba(0,140,155,.95), transparent 68%),
+    radial-gradient(42% 38% at 76% 72%, rgba(198,241,53,.20), transparent 66%),
+    radial-gradient(58% 52% at 62% 30%, rgba(0,108,122,.85), transparent 70%),
+    radial-gradient(70% 60% at 40% 84%, rgba(0,42,50,.9), transparent 72%);
+  filter:blur(10px);
+}
+
+/* Grain, en surimpression */
+.cover::after{
+  content:'';position:absolute;inset:0;
+  background-image:var(--noise);
+  opacity:.42;mix-blend-mode:overlay;pointer-events:none;
+}
+
+/* Le point orange */
+.pt{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:74px;height:74px;border-radius:50%;
+  background:var(--orange);
+  box-shadow:0 0 90px 30px rgba(255,98,25,.45), 0 0 200px 80px rgba(255,98,25,.18);
+  z-index:2;
+}
+.halo{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:430px;height:430px;border-radius:50%;
+  border:1.5px solid rgba(255,98,25,.22);z-index:2;
+}
+.halo.deux{width:700px;height:700px;border-color:rgba(255,98,25,.11)}
+
+/* Variante avec titre */
+.titre{
+  position:absolute;left:0;right:0;bottom:104px;z-index:3;text-align:center;
+  font-family:'PH',sans-serif;font-weight:600;
+  font-size:74px;line-height:1.08;letter-spacing:-.03em;
+  color:var(--sable);padding:0 90px;
+}
+.titre .o{color:var(--orange)}
+.sig{
+  position:absolute;left:0;right:0;bottom:64px;z-index:3;text-align:center;
+  font-size:22px;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(248,254,255,.42);
+}
+</style></head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <filter id="grain">
+    <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+  </filter>
+</svg>
+
+<!-- A · purement abstraite -->
+<div class="cover" id="a">
+  <div class="halo deux"></div>
+  <div class="halo"></div>
+  <div class="pt"></div>
+</div>
+
+<!-- B · avec le titre -->
+<div class="cover" id="b">
+  <div class="halo deux"></div>
+  <div class="halo"></div>
+  <div class="pt"></div>
+  <div class="titre">let's dive into<br>your feelings<span class="o">.</span></div>
+  <div class="sig">Paul-Hugo Guilloton</div>
+</div>
+
+<script>
+// Grain généré une fois, injecté comme data URI pour rester net à l'export
+const c = document.createElement('canvas');
+c.width = c.height = 260;
+const x = c.getContext('2d');
+const img = x.createImageData(260, 260);
+for (let i = 0; i < img.data.length; i += 4) {
+  const v = 90 + Math.random() * 165;
+  img.data[i] = img.data[i+1] = img.data[i+2] = v;
+  img.data[i+3] = 255;
+}
+x.putImageData(img, 0, 0);
+document.documentElement.style.setProperty('--noise', `url(${c.toDataURL()})`);
+</script>
+
+</body></html>
